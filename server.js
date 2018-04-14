@@ -2,7 +2,7 @@ const port = process.env.PORT || 3000;
 const express = require('express');
 const app = express();
 
-function getData(str) {
+function getOSData(str) {
   var arr = [];
   var append = false;
   for (let c of str) {
@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
   res.json({
     IP: req.ip.match(/\d.+/)[0],
     Lang: req.headers["accept-language"].split(',')[0],
-    OS: getData(req.headers['user-agent'])[0],
+    OS: getOSData(req.headers['user-agent'])[0],
   });
   res.end();
 });
